@@ -65,7 +65,6 @@ architecture rtl of FPiGA_I2C is
             DBG_ADDR : out std_logic_vector(3 downto 0);
             DBG_VALID : in std_logic(3 downto 0)
         );
-    end component;
     
     component I2CSLAVE
         generic( DEVICE: std_logic_vector(7 downto 0));
