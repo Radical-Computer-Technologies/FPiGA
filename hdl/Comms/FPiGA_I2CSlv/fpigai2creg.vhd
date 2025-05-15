@@ -115,6 +115,7 @@ begin
             end if;
         end if;
     end process;
+    
 	RAM : process(clock)
 	begin
 		if rising_edge(clock) then
@@ -128,126 +129,124 @@ begin
 				    dataout <= ctrl_reg1;
 
 
-                --DEBUG CORE DATA READS
-                elsif(unsigned(address) = 127)then
-                   dataout <= dbgdata_reg0(7 downto 0);
-                elsif(unsigned(address) = 128)then
-                   dataout <= dbgdata_reg0(15 downto 8);
-                elsif(unsigned(address) = 129)then
-                   dataout <= dbgdata_reg0(23 downto 16);
-                elsif(unsigned(address) = 130)then
-                   dataout <= dbgdata_reg0(31 downto 24);
-                elsif(unsigned(address) = 131)then
-                   dataout <= dbgdata_reg0(39 downto 32);
-                elsif(unsigned(address) = 132)then
-                   dataout <= dbgdata_reg0(47 downto 40);
-                elsif(unsigned(address) = 133)then
-                   dataout <= dbgdata_reg0(55 downto 48);
-                elsif(unsigned(address) = 134)then
-                   dataout <= dbgdata_reg0(63 downto 56);
-                elsif(unsigned(address) = 135)then
-                   dataout <= dbgdata_reg1(7 downto 0);
-                elsif(unsigned(address) = 136)then
-                   dataout <= dbgdata_reg1(15 downto 8);
-                elsif(unsigned(address) = 137)then
-                   dataout <= dbgdata_reg1(23 downto 16);
-                elsif(unsigned(address) = 138)then
-                   dataout <= dbgdata_reg1(31 downto 24);
-                elsif(unsigned(address) = 139)then
-                   dataout <= dbgdata_reg1(39 downto 32);
-                elsif(unsigned(address) = 140)then
-                   dataout <= dbgdata_reg1(47 downto 40);
-                elsif(unsigned(address) = 141)then
-                   dataout <= dbgdata_reg1(55 downto 48);
-                elsif(unsigned(address) = 142)then
-                   dataout <= dbgdata_reg1(63 downto 56);
-                elsif(unsigned(address) = 143)then
-                   dataout <= dbgdata_reg2(7 downto 0);
-                elsif(unsigned(address) = 144)then
-                   dataout <= dbgdata_reg2(15 downto 8);
-                elsif(unsigned(address) = 145)then
-                   dataout <= dbgdata_reg2(23 downto 16);
-                elsif(unsigned(address) = 146)then
-                   dataout <= dbgdata_reg2(31 downto 24);
-                elsif(unsigned(address) = 147)then
-                   dataout <= dbgdata_reg2(39 downto 32);
-                elsif(unsigned(address) = 148)then
-                   dataout <= dbgdata_reg2(47 downto 40);
-                elsif(unsigned(address) = 149)then
-                   dataout <= dbgdata_reg2(55 downto 48);
-                elsif(unsigned(address) = 150)then
-                   dataout <= dbgdata_reg2(63 downto 56);
-                elsif(unsigned(address) = 151)then
-                   dataout <= dbgdata_reg3(7 downto 0);
-                elsif(unsigned(address) = 152)then
-                   dataout <= dbgdata_reg3(15 downto 8);
-                elsif(unsigned(address) = 153)then
-                   dataout <= dbgdata_reg3(23 downto 16);
-                elsif(unsigned(address) = 154)then
-                   dataout <= dbgdata_reg3(31 downto 24);
-                elsif(unsigned(address) = 155)then
-                   dataout <= dbgdata_reg3(39 downto 32);
-                elsif(unsigned(address) = 156)then
-                   dataout <= dbgdata_reg3(47 downto 40);
-                elsif(unsigned(address) = 157)then
-                   dataout <= dbgdata_reg3(55 downto 48);
-                elsif(unsigned(address) = 158)then
-                   dataout <= dbgdata_reg3(63 downto 56);
-                --DEBUG CORE CONF/CTL READS
-                elsif(unsigned(address) = 159)then
-                   dataout <= dbg_ctl_reg0;
-                elsif(unsigned(address) = 160)then
-                   dataout <= trig_conf_reg;
-                elsif(unsigned(address) = 161)then
-                   dataout <= trig_cond_conf(7 downto 0);
-                elsif(unsigned(address) = 162)then
-                   dataout <= trig_cond_conf(15 downto 8);
-                elsif(unsigned(address) = 163)then
-                   dataout <= trig_cond_conf(23 downto 16);
-                elsif(unsigned(address) = 164)then
-                   dataout <= trig_cond_conf(31 downto 24);
-                elsif(unsigned(address) = 165)then
-                   dataout <= dbg_info_reg0;
+            --DEBUG CORE DATA READS
+            elsif(unsigned(address) = 127)then
+               dataout <= dbgdata_reg0(7 downto 0);
+            elsif(unsigned(address) = 128)then
+               dataout <= dbgdata_reg0(15 downto 8);
+            elsif(unsigned(address) = 129)then
+               dataout <= dbgdata_reg0(23 downto 16);
+            elsif(unsigned(address) = 130)then
+               dataout <= dbgdata_reg0(31 downto 24);
+            elsif(unsigned(address) = 131)then
+               dataout <= dbgdata_reg0(39 downto 32);
+            elsif(unsigned(address) = 132)then
+               dataout <= dbgdata_reg0(47 downto 40);
+            elsif(unsigned(address) = 133)then
+               dataout <= dbgdata_reg0(55 downto 48);
+            elsif(unsigned(address) = 134)then
+               dataout <= dbgdata_reg0(63 downto 56);
+            elsif(unsigned(address) = 135)then
+               dataout <= dbgdata_reg1(7 downto 0);
+            elsif(unsigned(address) = 136)then
+               dataout <= dbgdata_reg1(15 downto 8);
+            elsif(unsigned(address) = 137)then
+               dataout <= dbgdata_reg1(23 downto 16);
+            elsif(unsigned(address) = 138)then
+               dataout <= dbgdata_reg1(31 downto 24);
+            elsif(unsigned(address) = 139)then
+               dataout <= dbgdata_reg1(39 downto 32);
+            elsif(unsigned(address) = 140)then
+               dataout <= dbgdata_reg1(47 downto 40);
+            elsif(unsigned(address) = 141)then
+               dataout <= dbgdata_reg1(55 downto 48);
+            elsif(unsigned(address) = 142)then
+               dataout <= dbgdata_reg1(63 downto 56);
+            elsif(unsigned(address) = 143)then
+               dataout <= dbgdata_reg2(7 downto 0);
+            elsif(unsigned(address) = 144)then
+               dataout <= dbgdata_reg2(15 downto 8);
+            elsif(unsigned(address) = 145)then
+               dataout <= dbgdata_reg2(23 downto 16);
+            elsif(unsigned(address) = 146)then
+               dataout <= dbgdata_reg2(31 downto 24);
+            elsif(unsigned(address) = 147)then
+               dataout <= dbgdata_reg2(39 downto 32);
+            elsif(unsigned(address) = 148)then
+               dataout <= dbgdata_reg2(47 downto 40);
+            elsif(unsigned(address) = 149)then
+               dataout <= dbgdata_reg2(55 downto 48);
+            elsif(unsigned(address) = 150)then
+               dataout <= dbgdata_reg2(63 downto 56);
+            elsif(unsigned(address) = 151)then
+               dataout <= dbgdata_reg3(7 downto 0);
+            elsif(unsigned(address) = 152)then
+               dataout <= dbgdata_reg3(15 downto 8);
+            elsif(unsigned(address) = 153)then
+               dataout <= dbgdata_reg3(23 downto 16);
+            elsif(unsigned(address) = 154)then
+               dataout <= dbgdata_reg3(31 downto 24);
+            elsif(unsigned(address) = 155)then
+               dataout <= dbgdata_reg3(39 downto 32);
+            elsif(unsigned(address) = 156)then
+               dataout <= dbgdata_reg3(47 downto 40);
+            elsif(unsigned(address) = 157)then
+               dataout <= dbgdata_reg3(55 downto 48);
+            elsif(unsigned(address) = 158)then
+               dataout <= dbgdata_reg3(63 downto 56);
+            --DEBUG CORE CONF/CTL READS
+            elsif(unsigned(address) = 159)then
+               dataout <= dbg_ctl_reg0;
+            elsif(unsigned(address) = 160)then
+               dataout <= trig_conf_reg;
+            elsif(unsigned(address) = 161)then
+               dataout <= trig_cond_conf(7 downto 0);
+            elsif(unsigned(address) = 162)then
+               dataout <= trig_cond_conf(15 downto 8);
+            elsif(unsigned(address) = 163)then
+               dataout <= trig_cond_conf(23 downto 16);
+            elsif(unsigned(address) = 164)then
+               dataout <= trig_cond_conf(31 downto 24);
+            elsif(unsigned(address) = 165)then
+               dataout <= dbg_info_reg0;
 				else
 				    dataout <= (others=>'0');
 				end if;
-            --Register write cases
-            -- BASE CTRL REGISTER WRITES
+         --Register write cases
+         -- BASE CTRL REGISTER WRITES
 			elsif(unsigned(address) = 1)then
 				ctrl_reg0 <= data;
 				dataout <= data;  -- ????
 			elsif(unsigned(address) = 2)then
 				ctrl_reg1 <= data;
 				dataout <= data;  -- ????
-            elsif(unsigned(address) = 159)then
-              dbg_ctl_reg0 <= data;
-               dataout <= data;  -- ????
-
-            --DBG CORE REGISTER WRITES
-            elsif(unsigned(address) = 160)then
-               trig_conf_reg<= data;
-				dataout <= data;  -- ????
-            elsif(unsigned(address) = 161)then
-               trig_cond_conf(7 downto 0)<= data;
-				dataout <= data;  -- ????
-            elsif(unsigned(address) = 162)then
-                trig_cond_conf(15 downto 8)<= data;
-				dataout <= data;  -- ????
-            elsif(unsigned(address) = 163)then
-               trig_cond_conf(23 downto 16)<= data;
-				dataout <= data;  -- ????
-            elsif(unsigned(address) = 164)then
-              trig_cond_conf(31 downto 24)<= data;
+         elsif(unsigned(address) = 159)then
+           dbg_ctl_reg0 <= data;
+            dataout <= data;  -- ????
+         --DBG CORE REGISTER WRITES
+         elsif(unsigned(address) = 160)then
+            trig_conf_reg<= data;
 			   dataout <= data;  -- ????
-		    else
+         elsif(unsigned(address) = 161)then
+            trig_cond_conf(7 downto 0)<= data;
+			   dataout <= data;  -- ????
+         elsif(unsigned(address) = 162)then
+             trig_cond_conf(15 downto 8)<= data;
+			   dataout <= data;  -- ????
+         elsif(unsigned(address) = 163)then
+            trig_cond_conf(23 downto 16)<= data;
+			   dataout <= data;  -- ????
+         elsif(unsigned(address) = 164)then
+           trig_cond_conf(31 downto 24)<= data;
+			   dataout <= data;  -- ????
+		   else
 		      ctrl_reg0 <= ctrl_reg0;
-
+            ctrl_reg1 <= ctrl_reg1;
 		      dataout <= data;  -- ????
 			end if;
 		end if;
 	end process RAM;
 	
-	I2S_RST <= ctrl_reg0(0);
-    I2S_EN <= ctrl_reg0(1);
-    SOFT_EN <= ctrl_reg1;
+	SOFT_RST <= ctrl_reg0;
+   SOFT_EN <= ctrl_reg1;
 end rtl;
