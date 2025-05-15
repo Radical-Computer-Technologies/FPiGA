@@ -115,20 +115,18 @@ begin
             end if;
         end if;
     end process;
-    
+
 	RAM : process(clock)
 	begin
 		if rising_edge(clock) then
             --Output register data
-			if (wren = '0') then
-			    if(unsigned(address) = 0 )then
-				    dataout <= dev_id_reg;
-				elsif(unsigned(address) = 1)then
-				    dataout <= ctrl_reg0;
-				elsif(unsigned(address) = 2)then
-				    dataout <= ctrl_reg1;
-
-
+         if (wren = '0') then
+            if(unsigned(address) = 0 )then
+               dataout <= dev_id_reg;
+            elsif(unsigned(address) = 1)then
+               dataout <= ctrl_reg0;
+            elsif(unsigned(address) = 2)then
+               dataout <= ctrl_reg1;
             --DEBUG CORE DATA READS
             elsif(unsigned(address) = 127)then
                dataout <= dbgdata_reg0(7 downto 0);
@@ -209,9 +207,9 @@ begin
                dataout <= trig_cond_conf(31 downto 24);
             elsif(unsigned(address) = 165)then
                dataout <= dbg_info_reg0;
-				else
-				    dataout <= (others=>'0');
-				end if;
+            else
+               dataout <= (others=>'0');
+            end if;
          --Register write cases
          -- BASE CTRL REGISTER WRITES
 			elsif(unsigned(address) = 1)then
