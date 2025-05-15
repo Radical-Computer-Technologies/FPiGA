@@ -33,7 +33,7 @@ entity FPiGA_I2C is
         DBG_DATA3 : in std_logic_vector(63 downto 0);
         DBG_RDY : out std_logic_vector(3 downto 0);
         DBG_ADDR : out std_logic_vector(3 downto 0);
-        DBG_VALID : in std_logic(3 downto 0);
+        DBG_VALID : in std_logic(3 downto 0)
 	);
 end FPiGA_I2C;
 
