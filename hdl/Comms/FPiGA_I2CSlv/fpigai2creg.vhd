@@ -22,40 +22,39 @@ entity FPiGA_I2C_REGBANK is
 		data		: in	std_logic_vector(7 downto 0);
 		wren		: in	std_logic;
 		dataout		: out	std_logic_vector(7 downto 0);
-        rden        : in std_logic;
-        --General Control Registers
-        SOFT_RST   : out std_logic_vector(7 downto 0);
-        SOFT_EN  : out std_logic_vector(7 downto 0);
-        --Debug Core
-        DBG_DATA0 : in std_logic_vector(63 downto 0);
-        DBG_DATA1 : in std_logic_vector(63 downto 0);
-        DBG_DATA2 : in std_logic_vector(63 downto 0);
-        DBG_DATA3 : in std_logic_vector(63 downto 0);
-        
-        DBG_RDY : out std_logic_vector(3 downto 0);
-        DBG_ADDR : out std_logic_vector(3 downto 0);
-        DBG_VALID : in std_logic(3 downto 0)
+      rden        : in std_logic;
+      --General Control Registers
+      SOFT_RST   : out std_logic_vector(7 downto 0);
+      SOFT_EN  : out std_logic_vector(7 downto 0);
+      --Debug Core
+      DBG_DATA0 : in std_logic_vector(63 downto 0);
+      DBG_DATA1 : in std_logic_vector(63 downto 0);
+      DBG_DATA2 : in std_logic_vector(63 downto 0);
+      DBG_DATA3 : in std_logic_vector(63 downto 0);
+      
+      DBG_RDY : out std_logic_vector(3 downto 0);
+      DBG_ADDR : out std_logic_vector(3 downto 0);
+      DBG_VALID : in std_logic(3 downto 0)
 	);
 end FPiGA_I2C_REGBANK;
 
 architecture rtl of FPiGA_I2C_REGBANK is
-    --I2C Registers
-	signal dev_id_reg : std_logic_vector(7 downto 0) := ID_REGISTER; -- READ ONLY - DEVICE ID REGISTER
-	signal ctrl_reg0 : std_logic_vector(7 downto 0) := (others=>'0'); -- READ/WRITE - SOFTWARE RESET REGISTER  
-	signal ctrl_reg1 : std_logic_vector(7 downto 0) := (others=>'0'); -- READ/WRITE - SOFTWARE GENERAL ENABLE REGISTER
+   --I2C Registers
+   signal dev_id_reg : std_logic_vector(7 downto 0) := ID_REGISTER; -- READ ONLY - DEVICE ID REGISTER
+   signal ctrl_reg0 : std_logic_vector(7 downto 0) := (others=>'0'); -- READ/WRITE - SOFTWARE RESET REGISTER  
+   signal ctrl_reg1 : std_logic_vector(7 downto 0) := (others=>'0'); -- READ/WRITE - SOFTWARE GENERAL ENABLE REGISTER
 
-    signal dbgdata_reg0  : std_logic_vector(63 downto 0) := (others=>'0');
-    signal dbgdata_reg1  : std_logic_vector(63 downto 0) := (others=>'0');
-    signal dbgdata_reg2  : std_logic_vector(63 downto 0) := (others=>'0');
-    signal dbgdata_reg3  : std_logic_vector(63 downto 0) := (others=>'0');   
-    signal dbg_ctl_reg0  : std_logic_vector(7 downto 0) := (others=>'0');--  READ/WRITE [7 downto 4] RSVD - [3 downto 0] - Trigger En 
-    signal trig_conf_reg : std_logic_vector(7 downto 0) := (others=>'0'); --  READ/WRITE [7 downto 0] trigger condition
-    signal trig_cond_conf  : std_logic_vector(31 downto 0) := (others=>'0'); --  READ/WRITE trigger conditional
-    signal dbg_info_reg0 : std_logic_vector(7 downto 0)  := x"0" & std_logic_vector(to_unsigned(NCORES,4));   --  READ ONLY [7 downto 4] triggered - [3 downto 0] ncores 
-
-    signal dbgrdy : std_logic_vector(3 downto 0) := (others=>'0');
-    -- other signals
-    signal trig_r : std_logic_vector(3 downto 0) := (others=>'0'); 
+   signal dbgdata_reg0  : std_logic_vector(63 downto 0) := (others=>'0');
+   signal dbgdata_reg1  : std_logic_vector(63 downto 0) := (others=>'0');
+   signal dbgdata_reg2  : std_logic_vector(63 downto 0) := (others=>'0');
+   signal dbgdata_reg3  : std_logic_vector(63 downto 0) := (others=>'0');   
+   signal dbg_ctl_reg0  : std_logic_vector(7 downto 0) := (others=>'0');--  READ/WRITE [7 downto 4] RSVD - [3 downto 0] - Trigger En 
+   signal trig_conf_reg : std_logic_vector(7 downto 0) := (others=>'0'); --  READ/WRITE [7 downto 0] trigger condition
+   signal trig_cond_conf  : std_logic_vector(31 downto 0) := (others=>'0'); --  READ/WRITE trigger conditional
+   signal dbg_info_reg0 : std_logic_vector(7 downto 0)  := x"0" & std_logic_vector(to_unsigned(NCORES,4));   --  READ ONLY [7 downto 4] triggered - [3 downto 0] ncores    
+   signal dbgrdy : std_logic_vector(3 downto 0) := (others=>'0');
+   -- other signals
+   signal trig_r : std_logic_vector(3 downto 0) := (others=>'0'); 
 begin
     debugcore : process(clock)
     begin
@@ -118,10 +117,10 @@ begin
 
 	RAM : process(clock)
 	begin
-		if rising_edge(clock) then
-            --Output register data
-         if (wren = '0') then
-            if(unsigned(address) = 0 )then
+      if rising_edge(clock)then
+         --Read data
+         if(wren = '0')then
+            if(unsigned(adress) = 0)then
                dataout <= dev_id_reg;
             elsif(unsigned(address) = 1)then
                dataout <= ctrl_reg0;
@@ -237,11 +236,11 @@ begin
          elsif(unsigned(address) = 164)then
            trig_cond_conf(31 downto 24)<= data;
 			   dataout <= data;  -- ????
-		   else
-		      ctrl_reg0 <= ctrl_reg0;
+         else
+            ctrl_reg0 <= ctrl_reg0;
             ctrl_reg1 <= ctrl_reg1;
-		      dataout <= data;  -- ????
-			end if;
+            dataout <= data;
+         end if;
 		end if;
 	end process RAM;
 	
