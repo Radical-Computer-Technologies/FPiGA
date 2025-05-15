@@ -13,7 +13,7 @@ use IEEE.numeric_std.all;
 entity FPiGA_I2C_REGBANK is
 	generic(
 		ID_REGISTER : std_logic_vector(7 downto 0) := x"00";
-        NCORES : integer range 0 to 4 := 0;
+        NCORES : integer range 0 to 4 := 0
 	);
 	port(
 	    --

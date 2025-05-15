@@ -14,7 +14,7 @@ entity FPiGA_I2C is
 	generic(
 		ID_REGISTER : std_logic_vector(7 downto 0) := x"00";
 		DEVADDR 		: std_logic_vector(7 downto 0) := x"38";
-        NCORES : integer range 0 to 4 := 0;
+        NCORES : integer range 0 to 4 := 0
 	);
 	port(
         -- I2C Lines (to pins and expecting external pull up resistor)
@@ -43,7 +43,7 @@ architecture rtl of FPiGA_I2C is
     component FPiGA_I2C_REGBANK is
         generic(
             ID_REGISTER : std_logic_vector(7 downto 0) := x"00";
-            NCORES : integer range 0 to 4 := 0;
+            NCORES : integer range 0 to 4 := 0
         );
         port(
             --
@@ -97,46 +97,32 @@ architecture rtl of FPiGA_I2C is
     signal ramwren : std_logic;
 begin
 
-	I2C_RAM : sp256x8
-		port map (
-		    DEVICE_ID => idreg_i,
-			address	=> ramaddr,
-			clock		=> SYSCLK,
-			data		=> ramdin,
-			wren		=> ramwren,
-			q			=> ramdout,
-            I2S_RST => SOFTRST,
-            I2S_EN  => open
-		);
-
-I2C_RAM : FPiGA_I2C_REGBANK 
-	generic(
-		ID_REGISTER => ID_REGISTER,
-        NCORES => NCORES,
-	);
-	port(
-	    --
-		address	=>	ramaddr,
-		clock	=>	SYSCLK,
-		data	=>	ramdin,
-		wren	=>	ramwren,
-		dataout	=>	ramdout,
-        rden    =>  ramrden, 
-        --General Control Registers
-        SOFT_RST   => SOFT_RST,
-        SOFT_EN  => SOFT_EN,
-        --Debug Core
-        DBG_DATA0 => DBG_DATA0,
-        DBG_DATA1 => DBG_DATA1,
-        DBG_DATA2 => DBG_DATA2,
-        DBG_DATA3 =>  DBG_DATA3,
-        DBG_RDY  =>  DBG_RDY,
-        DBG_ADDR =>  DBG_ADDR,
-        DBG_VALID =>  DBG_VALID
-	);
-end component;
-
-
+    I2C_RAM : FPiGA_I2C_REGBANK 
+    	generic map(
+    		ID_REGISTER => ID_REGISTER,
+            NCORES => NCORES
+    	);
+    	port map(
+    	    --
+    		address	=>	ramaddr,
+    		clock	=>	SYSCLK,
+    		data	=>	ramdin,
+    		wren	=>	ramwren,
+    		dataout	=>	ramdout,
+            rden    =>  ramrden, 
+            --General Control Registers
+            SOFT_RST   => SOFT_RST,
+            SOFT_EN  => SOFT_EN,
+            --Debug Core
+            DBG_DATA0 => DBG_DATA0,
+            DBG_DATA1 => DBG_DATA1,
+            DBG_DATA2 => DBG_DATA2,
+            DBG_DATA3 =>  DBG_DATA3,
+            DBG_RDY  =>  DBG_RDY,
+            DBG_ADDR =>  DBG_ADDR,
+            DBG_VALID =>  DBG_VALID
+    	);
+    end component;
 
 	I_I2CITF : I2CSLAVE
 		generic map (DEVICE => DEVADDR)
