@@ -55,7 +55,7 @@ architecture rtl of I2CSLAVE is
 	signal sda: std_logic;
 	signal address_incr : std_logic;
 	signal rd_d : std_logic;
-    signal read_data_done : std_logic;
+    signal read_data_done : std_logic
 begin
 
 	ADDRESS <= address_i;

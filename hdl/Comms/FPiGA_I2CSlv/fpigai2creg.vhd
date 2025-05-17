@@ -16,7 +16,7 @@ entity FPiGA_I2C_REGBANK is
         NCORES : integer range 0 to 4 := 0
 	);
 	port(
-	    --
+	   --
 		address		: in	std_logic_vector(7 downto 0);
 		clock		: in	std_logic;
 		data		: in	std_logic_vector(7 downto 0);
@@ -77,43 +77,43 @@ begin
             if(dbg_ctl_reg0(1) = '1' and trig_r(1)  = '0')then
                 dbgrdy(1) <= '1';
             elsif(DBG_VALID(1) = '1' and dbgrdy(1) = '1')then
-                --set trigger valid indicator
-                dbg_info_reg0(5) <= '1';
-                dbgdata_reg1 <= DBG_DATA1;
-                dbgrdy(1) <= '0';
+               --set trigger valid indicator
+               dbg_info_reg0(5) <= '1';
+               dbgdata_reg1 <= DBG_DATA1;
+               dbgrdy(1) <= '0';
             elsif(rden = '1' and unsigned(address) = 142)then
-                dbgrdy(1) <= '1';
-                --clear trigger valid indicator
-                dbg_info_reg0(5) <= '0';
+               dbgrdy(1) <= '1';
+               --clear trigger valid indicator
+               dbg_info_reg0(5) <= '0';
             end if;
 
             if(dbg_ctl_reg0(2) = '1' and trig_r(2)  = '0')then
-                dbgrdy(2) <= '1';
+               dbgrdy(2) <= '1';
             elsif(DBG_VALID(2) = '1' and dbgrdy(2) = '1')then
-                --set trigger valid indicator
-                dbg_info_reg0(6) <= '1';
-                dbgdata_reg2 <= DBG_DATA2;
-                dbgrdy(2) <= '0';
+               --set trigger valid indicator
+               dbg_info_reg0(6) <= '1';
+               dbgdata_reg2 <= DBG_DATA2;
+               dbgrdy(2) <= '0';
             elsif(rden = '1' and unsigned(address) = 150)then
-                dbgrdy(2) <= '1';
-                --clear trigger valid indicator
-                dbg_info_reg0(6) <= '0';
+               dbgrdy(2) <= '1';
+               --clear trigger valid indicator
+               dbg_info_reg0(6) <= '0';
             end if;
 
             if(dbg_ctl_reg0(3) = '1' and trig_r(3)  = '0')then
-                dbgrdy(3) <= '1';
+               dbgrdy(3) <= '1';
             elsif(DBG_VALID(3) = '1' and dbgrdy(3) = '1')then
-                --set trigger valid indicator
-                dbg_info_reg0(7) <= '1';
-                dbgdata_reg2 <= DBG_DATA2;
-                dbgrdy(3) <= '0';
+               --set trigger valid indicator
+               dbg_info_reg0(7) <= '1';
+               dbgdata_reg2 <= DBG_DATA2;
+               dbgrdy(3) <= '0';
             elsif(rden = '1' and unsigned(address) = 158)then
-                dbgrdy(3) <= '1';
-                --clear trigger valid indicator
-                dbg_info_reg0(7) <= '0';
+               dbgrdy(3) <= '1';
+               --clear trigger valid indicator
+               dbg_info_reg0(7) <= '0';
             end if;
-        end if;
-    end process;
+         end if;
+   end process;
 
 	RAM : process(clock)
 	begin
@@ -209,8 +209,7 @@ begin
             else
                dataout <= (others=>'0');
             end if;
-         --Register write cases
-         -- BASE CTRL REGISTER WRITES
+         --BASE CTRL REGISTER WRITES
 			elsif(unsigned(address) = 1)then
 				ctrl_reg0 <= data;
 				dataout <= data;  -- ????
@@ -218,7 +217,7 @@ begin
 				ctrl_reg1 <= data;
 				dataout <= data;  -- ????
          elsif(unsigned(address) = 159)then
-           dbg_ctl_reg0 <= data;
+            dbg_ctl_reg0 <= data;
             dataout <= data;  -- ????
          --DBG CORE REGISTER WRITES
          elsif(unsigned(address) = 160)then
@@ -228,13 +227,13 @@ begin
             trig_cond_conf(7 downto 0)<= data;
 			   dataout <= data;  -- ????
          elsif(unsigned(address) = 162)then
-             trig_cond_conf(15 downto 8)<= data;
+            trig_cond_conf(15 downto 8)<= data;
 			   dataout <= data;  -- ????
          elsif(unsigned(address) = 163)then
             trig_cond_conf(23 downto 16)<= data;
 			   dataout <= data;  -- ????
          elsif(unsigned(address) = 164)then
-           trig_cond_conf(31 downto 24)<= data;
+            trig_cond_conf(31 downto 24)<= data;
 			   dataout <= data;  -- ????
          else
             ctrl_reg0 <= ctrl_reg0;
@@ -243,7 +242,7 @@ begin
          end if;
 		end if;
 	end process RAM;
-	
-	SOFT_RST <= ctrl_reg0;
+   
+   SOFT_RST <= ctrl_reg0;
    SOFT_EN <= ctrl_reg1;
 end rtl;
