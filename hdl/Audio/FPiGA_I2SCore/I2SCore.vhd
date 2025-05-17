@@ -61,6 +61,7 @@ architecture RTL of FPiGA_I2S is
 component i2s_cdc_fifo
 	port (
   Data :  in std_logic_vector(47 downto 0);
+  Reset :  in std_logic;
   WrClk :  in std_logic;
   RdClk :  in std_logic;
   WrEn :  in std_logic;
@@ -68,7 +69,6 @@ component i2s_cdc_fifo
   Rnum :  out std_logic_vector(6 downto 0);
   Q :  out std_logic_vector(47 downto 0);
   Empty :  out std_logic;
-  Reset: in std_logic;
   Full :  out std_logic
 	);
 end component;
