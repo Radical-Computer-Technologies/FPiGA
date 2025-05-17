@@ -1,8 +1,25 @@
+--###############################
+--# Project Name : FPiGA_CoreLib
+--# File         : I2SCore.vhd
+--# Project      : Radical Computer Technologies FPiGA Core Lib
+--# Engineer     : Joseph Vincent (jvincent@radcomp.tech)
+--# Version      : 1.0.0
+--###############################
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.all;
+library gw5a;
+use gw5a.components.all;
 
 entity FPiGA_I2S is
   port (
     SYSCLK : in STD_LOGIC;
     SYS_RSTN : in STD_LOGIC;
+
+    --Control Bus
+    I2S_EN : in std_logic;
+
     --RPi I2S Signals
     I2S_SDA_IN_RPI : in std_logic;
     I2S_SDA_OUT_RPI : out std_logic;
@@ -70,8 +87,27 @@ signal rdnum_pdin  : std_logic_vector(6 downto 0);
 signal rdnum_pdout  : std_logic_vector(6 downto 0);
 signal rden_pdout  : std_logic_vector(6 downto 0);
 signal sysrst_i : std_logic := '0';
+signal i2sen_bck : std_logic := '0';
+signal i2sen_r : std_logic := '0';
+signal i2sen_rr : std_logic := '0';
+signal i2sen_rrr : std_logic := '0';
+signal i2sen_i : std_logic := '0';
+
 begin
 sysrst_i <= not SYS_RSTN;
+
+i2s_cdc : process(I2S_BCK_ADC)
+begin
+    if rising_edge(I2S_BCK_ADC)then 
+        i2sen_r <= I2S_EN;
+        i2sen_rr <= i2sen_r;
+        i2sen_rrr <= i2sen_rr;
+        i2sen_i <= i2sen_rrr;
+    end if;
+
+end process;
+
+
 -- Raspberry Pi I2S Handling
 
 rpi_bck_fwd:ODDR
@@ -108,7 +144,7 @@ pidatain : process(I2S_BCK_ADC)
 begin
 
     if rising_edge(I2S_BCK_ADC)then
-        if(i2sAdcRst_i = '1') then
+        if(i2sAdcRst_i = '1' or i2sen_i = '0') then
             syncd := '0';
             rpiDinValid_i <= '0';
             incnt := 0;
@@ -172,7 +208,7 @@ pidataout :  process(I2S_BCK_ADC)
 begin
 
     if rising_edge(I2S_BCK_ADC)then
-        if(i2sAdcRst_i = '1') then
+        if(i2sAdcRst_i = '1' or i2sen_i = '0') then
             lrckr := '1';
             I2S_SDA_OUT_RPI <= '0';
             i2sbitcnt := 0;

@@ -2,7 +2,7 @@
 --# Project Name : FPiGA_CoreLib
 --# File         : fpigai2c_top.vhd
 --# Project      : Radical Computer Technologies FPiGA Core Lib
---# Engineer     : Joseph Vincent
+--# Engineer     : Joseph Vincent (jvincent@radcomp.tech)
 --# Version      : 1.0.0
 --###############################
 
