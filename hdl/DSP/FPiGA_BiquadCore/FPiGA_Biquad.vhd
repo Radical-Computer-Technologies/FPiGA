@@ -25,7 +25,9 @@ entity FPiGA_Biquad is
         Coef_a1 : in std_logic_vector(23 downto 0);
         Coef_ADDR : in integer range 0 to 9;
         Coef_valid : in std_logic;
-
+        --Takes 13 cycles for 10 second order biquad outputs
+        -- If cascaded, then multiply by the number of cascades, 
+        -- so 8th order (4 biquads) would take 52 cycles
         BQ0_DATA : out std_logic_vector(23 downto 0);
         BQ1_DATA : out std_logic_vector(23 downto 0);
         BQ2_DATA : out std_logic_vector(23 downto 0);
@@ -64,7 +66,7 @@ signal sampleReg : coreRegisters;
 signal coeff : coreCoef;
 signal sampleMult : multData;
 signal coefMult : multData;
-signal biquadCnt : integer range -1 to 10 := -1;
+signal biquadCnt : integer range -1 to 13 := -1;
 signal mult_ce : std_logic := '0';
 begin
 
@@ -136,16 +138,16 @@ begin
             coefMult(1) <= coeff(0)(3);
             
             --x2 * b2
-            sampleMult(1)  <= coreRegisters(0)(2); 
+            sampleMult(2)  <= coreRegisters(0)(2); 
             coefMult(1) <= coeff(0)(4);
             
             --y1 * -a1
-            sampleMult(0)  <= coreRegisters(0)(0); 
-            coefMult(0) <=  std_logic_vector(-to_signed(coeff(0)(0)));
+            sampleMult(3)  <= coreRegisters(0)(3); 
+            coefMult(3) <=  std_logic_vector(-to_signed(coeff(0)(0)));
 
             --y2 * -a2
-            sampleMult(1)  <= coreRegisters(0)(1); 
-            coefMult(1) <= std_logic_vector(-to_signed(coeff(0)(1)));
+            sampleMult(4)  <= coreRegisters(0)(4); 
+            coefMult(4) <= std_logic_vector(-to_signed(coeff(0)(1)));
             mult_ce <= '1';
 
             biquadCnt <= biquadCnt + 1;
