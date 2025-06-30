@@ -1,6 +1,6 @@
 ---
 remote_theme: pages-themes/slate@v0.2.0
-layout: page
+layout: default
 title: "FPiGA Audio DSP Hat"
 permalink: /audio-dsp-hat/
 ---
