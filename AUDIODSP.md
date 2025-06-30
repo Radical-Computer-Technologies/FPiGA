@@ -1,5 +1,5 @@
 ---
-theme: jekyll-theme-minimal
+theme: pages-themes/slate@v0.2.0
 layout: page
 title: "FPiGA Audio DSP Hat"
 permalink: /audio-dsp-hat/
