@@ -1,4 +1,4 @@
-# FPiGA-CoreLib
+# FPiGA Project
 Radical Computer Technologies public repository for the FPiGA CoreLib including both HDL source for the core library as well as linterfacing software libraries/drivers for the Raspberry Pi and other "Pi-like" platforms.
 
 ## Overview
