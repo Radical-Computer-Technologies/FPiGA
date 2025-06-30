@@ -31,6 +31,7 @@ A basic diagram of the system design is below:
 * Waveform generation from FPGA
 * Integrated Mixer in FPGA
 * Control of codec programmable gains in FPGA
+
 ## Planned Features
 * Programmable Biquad filter bank
 * Programmable signal path generation via rudimentary instruction set (Similar to SPIN FV-1)
@@ -38,13 +39,14 @@ A basic diagram of the system design is below:
 * Oversampling filters
 * Bitcrushing
 
-
 ## Supported Platforms
 * Raspberry Pi 3, 4, 5, CM4, CM5, Zero, Zero 2 W,
 * Rock Pi 3C, Rock Pi Zero 3W, Rock Pi CM3, and Rock Pi 5. (Planned)
 * Orange Pi Platforms (Planned)
 
 ## Building
+
+* [Audio FPiGA Hat Repository](github.com/Radical-Computer-Technologies/FPiGA-Audio-Hat/tree/main)
 
 ### FPGA Build
 The FPGA project source can be built using the Gowin EDA Toolset. All source for this can be found in the hw_rev1_0/source/hdl directory.
