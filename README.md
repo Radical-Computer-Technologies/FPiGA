@@ -10,3 +10,6 @@ FPiGA addresses this gap with a “Keep It Simple, Stupid” (KISS) philosophy �
 * Unified device drivers
 * Consistent hardware abstraction libraries
 By defining clear and reliable standards, FPiGA simplifies development, encourages interoperability, and accelerates innovation across FPGA and Raspberry Pi integration projects.
+
+## Hardware Platforms
+* [RCT FPiGA Audio DSP Hat](https://radical-computer-technologies.github.io/FPiGA/audio-dsp-hat/)

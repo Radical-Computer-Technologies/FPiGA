@@ -5,15 +5,21 @@ title: "FPiGA Audio DSP Hat"
 permalink: /audio-dsp-hat/
 ---
 
-![FPiGA Audio Board](https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/refs/heads/main/images/audiodsphat/fpi.jpg "FPiGA Audio Board")
 
-![Diagram](https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/bb083059dd13a0a5810db5b0d8b1854712e34e84/images/audiodsphat/FPiGA_diagram.svg "Diagram")
+
+<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/refs/heads/main/images/audiodsphat/fpi.jpg" alt="FPiGA Audio Board" width="300" >
+
+<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/bb083059dd13a0a5810db5b0d8b1854712e34e84/images/audiodsphat/FPiGA_diagram.svg " alt="FPiGA Audio Board Digram" width="400" >
+
+
 
 # Crimson 1.0.0 Release
 
 A basic diagram of the system design is below:
 
-![Core Design](https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/refs/heads/main/images/audiodsphat/coredesign.png "Core Design")
+<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/refs/heads/main/images/audiodsphat/coredesign.png" alt="Core Design" width="600" >
+
+
 
 ## Core Design Features
 * I2S clocks generated from the SSM2603 codec
