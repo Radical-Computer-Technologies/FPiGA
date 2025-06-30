@@ -1,6 +1,8 @@
+---
 layout: page
 title: "FPiGA Audio DSP Hat"
 permalink: /AudioDSPHat
+---
 
 # Version 1.0
 
