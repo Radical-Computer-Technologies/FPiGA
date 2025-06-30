@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "FPiGA Audio DSP Hat"
-permalink: /AudioDSPHat
+permalink: /audio-dsp-hat/
 ---
 
 # Version 1.0
