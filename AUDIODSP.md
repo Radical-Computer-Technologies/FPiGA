@@ -5,15 +5,15 @@ title: "FPiGA Audio DSP Hat"
 permalink: /audio-dsp-hat/
 ---
 
+# Radical Computer Technologies FPiGA Audio Hat
+
+## Board Diagram
+
+<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/bb083059dd13a0a5810db5b0d8b1854712e34e84/images/audiodsphat/FPiGA_diagram.svg " alt="FPiGA Audio Board Digram" width="500" >
 
 
-<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/refs/heads/main/images/audiodsphat/fpi.jpg" alt="FPiGA Audio Board" width="300" >
 
-<img src="https://raw.githubusercontent.com/Radical-Computer-Technologies/FPiGA/bb083059dd13a0a5810db5b0d8b1854712e34e84/images/audiodsphat/FPiGA_diagram.svg " alt="FPiGA Audio Board Digram" width="400" >
-
-
-
-# Crimson 1.0.0 Release
+## Crimson 1.0.0 Release Notes
 
 A basic diagram of the system design is below:
 
