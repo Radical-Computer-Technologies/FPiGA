@@ -10,11 +10,3 @@ FPiGA addresses this gap with a “Keep It Simple, Stupid” (KISS) philosophy �
 * Unified device drivers
 * Consistent hardware abstraction libraries
 By defining clear and reliable standards, FPiGA simplifies development, encourages interoperability, and accelerates innovation across FPGA and Raspberry Pi integration projects.
-
-## Helpful Links:
-* [FPiGA Crimon Documentation](https://radical-computer-technologies.github.io/Radical-Computer-Technologies/f-pi-ga.html)
-* [How To Contribute](https://radical-computer-technologies.github.io/Radical-Computer-Technologies/contribute.html)
-
-## Standard Compliant Boards
-
-* [Radical Computer Technologies FPiGA Audio Hat (I2C/I2S/FPiGA 8 Pin)](https://github.com/Radical-Computer-Technologies/FPiGA-Audio-Hat/tree/main)
