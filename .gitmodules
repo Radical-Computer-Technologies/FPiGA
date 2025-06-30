@@ -1,0 +1,3 @@
+[submodule "platforms/FPiGA-Audio-Hat"]
+	path = platforms/FPiGA-Audio-Hat
+	url = https://github.com/Radical-Computer-Technologies/FPiGA-Audio-Hat
