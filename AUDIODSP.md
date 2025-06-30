@@ -46,7 +46,7 @@ A basic diagram of the system design is below:
 
 ## Building
 
-* [Audio FPiGA Hat Repository](github.com/Radical-Computer-Technologies/FPiGA-Audio-Hat/tree/main)
+* [Audio FPiGA Hat Repository](https://github.com/Radical-Computer-Technologies/FPiGA-Audio-Hat/tree/main)
 
 ### FPGA Build
 The FPGA project source can be built using the Gowin EDA Toolset. All source for this can be found in the hw_rev1_0/source/hdl directory.
